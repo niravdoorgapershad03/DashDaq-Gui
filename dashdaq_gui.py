@@ -423,7 +423,19 @@ class DashDAQViewer(tk.Tk):
 
     def _style_axes_list(self, axes):
         for ax in axes:
-            self._style_figure(self.fig, ax, title=None)
+            # Keep current labels and title
+            title = ax.get_title()
+            xlabel = ax.get_xlabel()
+            ylabel = ax.get_ylabel()
+
+            self._style_figure(
+                self.fig,
+                ax,
+                title=title if title else None,
+                xlabel=xlabel if xlabel else "Time",
+                ylabel=ylabel if ylabel else "Value",
+            )
+
 
     # ---------- Time helpers ----------
 
